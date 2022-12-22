@@ -1,7 +1,11 @@
 import { styled } from '@stitches/react';
 
 const Chat = () => {
-  return (<div>char</div>)
+  return (
+    <div>
+      
+    </div>
+  )
 }
 
 export default Chat;

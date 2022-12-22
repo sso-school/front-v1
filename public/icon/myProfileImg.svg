@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60" height="65.356" viewBox="0 0 60 65.356">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Icon_material-person" data-name="Icon material-person" d="M24.322,23.935a9.063,9.063,0,0,0,9.161-8.967,9.163,9.163,0,0,0-18.322,0A9.063,9.063,0,0,0,24.322,23.935Zm0,4.484C12.246,28.418,5,33.422,5,39.385L6,50.673H42.643l1-11.287C43.643,33.422,36.4,28.418,24.322,28.418Z" transform="translate(41.398 170.723)" fill="#7a7a7a"/>
+    </clipPath>
+  </defs>
+  <g id="Group_115" data-name="Group 115" transform="translate(-158 -123)">
+    <circle id="Ellipse_41" data-name="Ellipse 41" cx="30" cy="30" r="30" transform="translate(158 123)" fill="#fafafa"/>
+    <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(122.281 -33.04)" clip-path="url(#clip-path)">
+      <circle id="Ellipse_22" data-name="Ellipse 22" cx="30" cy="30" r="30" transform="translate(35.719 156.05)" fill="#7a7a7a"/>
+    </g>
+  </g>
+</svg>

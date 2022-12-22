@@ -1,13 +1,22 @@
+import { styled } from '@stitches/react';
 import { Outlet } from 'react-router-dom';
 
-import Menu from './menu';
+import Footer from './footer';
 
 const Main = () => {
+  const Main = styled('div', {
+    padding: '0 30px',
+    height: '100%',
+    width: 'calc(100% - 60px)'
+  });
+
   return (
-    <div className='main'>
-      <Outlet />
-      <Menu />
-    </div>
+    <>
+      <Main>
+        <Outlet />
+      </Main>
+      <Footer />
+    </>
   )
 }
 

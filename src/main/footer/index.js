@@ -6,15 +6,19 @@ const MenuDiv = styled('div', {
   position: 'fixed',
   bottom: 0,
   left: 0,
-  padding: '0 10px',
+  padding: '0 15px',
 
-  width: 'calc(100vw - 20px)',
-  height: '75px',
+  width: 'calc(100vw - 30px)',
+  height: '78px',
   display: 'flex',
   justifyContent: 'space-around',
   alignItems: 'center',
-  boxShadow: '0px -2px 20px rgba(0, 0, 0, 0.15)',
-  zIndex: 1
+  borderTop: '1.5px solid #e5e5e5',
+  // boxShadow: '0px -2px 20px rgba(0, 0, 0, 0.1)',
+  zIndex: 1,
+
+  background: 'rgba(255, 255, 255, 0.1)',
+  backdropFilter: 'blur(20px)',
 });
 
 const Button = styled('button', {
@@ -34,8 +38,9 @@ const Button = styled('button', {
 });
 
 const Icon = styled('img', {
-  width: '25px',
-  height: '25px',
+  width: '30px',
+  height: '27px',
+  objectFit: 'contain',
   variants: {
     isFocused: {
       "1": {
@@ -43,11 +48,15 @@ const Icon = styled('img', {
       },
       "0": {
         filter: 'grayScale(100%)',
-        // '&:hover': {
-        //   filter: 'grayScale(60%)'
-        // },
+        scale: 1,
+        '&:hover': {
+          filter: 'grayScale(70%)',
+          scale: 1.1
+        },
         '&:active': {
-          filter: 'grayScale(0%)'
+          filter: 'grayScale(30%)',
+          scale: 0.9,
+          opacity: '0.5'
         }
       }
     }
@@ -57,20 +66,7 @@ const Icon = styled('img', {
   }
 });
 
-
-const MenuButton = (prop) => {
-  const navigate = useNavigate();
-  const { icon, isFocused, path } = prop;
-  return (
-    <Button onClick={() => {
-      navigate(String(path));
-    }}>
-      <Icon src={`/icon/${icon}.svg`} alt="icon" isFocused={isFocused ?? 0} />
-    </Button>
-  )
-}
-
-let menu = [
+let menuList = [
   { path: '/', icon: 'home', isFocused: 0 },
   { path: '/social', icon: 'social', isFocused: 0 },
   { path: '/chat', icon: 'chat', isFocused: 0 },
@@ -78,16 +74,42 @@ let menu = [
   { path: '/other', icon: 'other', isFocused: 0 }
 ];
 
-const setIconColor = () => {
+const setIconColor = (setMenu) => {
   const locate = window.location.pathname.split('/')[1];
-  for(const i in menu){
-    const e = menu[i];
+  for(const i in menuList){
+    const e = menuList[i];
     if(e.path === '/' + locate) e.isFocused = 1;
+    else e.isFocused = 0;
   }
+  let tmpMenu = [];
+  for(const i in menuList){
+    const e = menuList[i];
+    tmpMenu.push(e);
+  }
+  setMenu(tmpMenu);
 }
 
-const Menu = () => {
-  setIconColor();
+const MenuButton = (prop) => {
+  const navigate = useNavigate();
+  const { icon, isFocused, path, setMenu } = prop;
+  return (
+    <Button onClick={() => {
+      navigate(String(path));
+      setIconColor(setMenu);
+    }}>
+      <Icon src={`/icon/${icon}.svg`} alt="icon" isFocused={isFocused ?? 0} />
+    </Button>
+  )
+}
+
+
+const Footer = () => {
+  let [menu, setMenu] = useState([]);
+
+  useEffect(() => {
+    setIconColor(setMenu);
+  }, []);
+  
   return (
     <MenuDiv className="menu">
       {
@@ -98,7 +120,7 @@ const Menu = () => {
               path={item.path}
               icon={item.icon}
               isFocused={item.isFocused}
-              // states={[menu, setMenu]}
+              setMenu={setMenu}
             />
           )
         })
@@ -107,4 +129,4 @@ const Menu = () => {
   )
 }
 
-export default Menu;
+export default Footer;
